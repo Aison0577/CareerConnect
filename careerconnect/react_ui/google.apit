@@ -1,0 +1,45 @@
+{
+  "url": "http://localhost:8000/api/starjob",
+  "method": "post",
+  "params": {
+    "\"input\"": "'Hello'"
+  },
+  "paramsArray": [
+    [
+      "134d8bbf-b3c2-416c-a95a-c850e9e86658",
+      "\"input\"",
+      "'Hello'",
+      true,
+      "STRING"
+    ]
+  ],
+  "headers": {
+    "'input'": "'Hello'",
+    "Content-Type": "application/json"
+  },
+  "headersArray": [
+    [
+      "0e55d89d-86f9-4ed1-a993-ca3b569ff246",
+      "'input'",
+      "'Hello'",
+      true,
+      "STRING"
+    ],
+    [
+      "40e5fe54-dc68-47e0-9f43-ad6603ae6fee",
+      "Content-Type",
+      "application/json",
+      true,
+      "STRING"
+    ]
+  ],
+  "backup": {
+    "bodyType": "raw",
+    "bodySubType": "json",
+    "rawData": "{\n  \"seeker_id\": 4,\n  \"job_id\": 17\n}"
+  },
+  "data": {
+    "seeker_id": 4,
+    "job_id": 17
+  }
+}

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.adjust{
+    @apply w-[95%] md:w-[70%] mx-auto
+}
+
+/* Scrollbar container */
+::-webkit-scrollbar {
+    width: 12px; /* Adjust the width */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fffefe; /* Color of the scrollbar track */
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    border: 3px solid #ffffff; /* Adds padding around the thumb */
+}
+
+/* Hover on handle */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color when hovered */
+}
