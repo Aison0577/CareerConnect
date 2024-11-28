@@ -87,20 +87,20 @@ export default function ViewJobDetails() {
                         />
 
                         <div className='grid grid-cols-2 text-blue-700 items-center justify-center'>
-                            <h1 className='flex gap-2 items-center mb-2 justify-center'>
+                            <div className='flex gap-2 items-center mb-2 justify-center'>
                                 <FontAwesomeIcon className='size-5' icon={faBriefcase}/>
                                 <Subs
                                     text={details.company.name}
                                     otherStyles={'text-gray-600'}
                                 />
-                            </h1>
-                            <h1 className='flex gap-2 items-center mb-2 justify-center'>
+                            </div>
+                            <div className='flex gap-2 items-center mb-2 justify-center'>
                                 <FontAwesomeIcon className='size-5' icon={faClock}/>
                                 <Subs
                                     text={details.jobdurationtype}
                                     otherStyles={'text-gray-600'}
                                 />
-                            </h1>
+                            </div>
                             <div className='flex flex-col md:flex-row justify-center md:justify-between gap-3 adjust items-center col-span-2'>
                                 <h1 className='flex gap-2 items-center font-bold justify-center'>
                                     Category:
