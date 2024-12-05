@@ -12,6 +12,7 @@ import SeekerRegister from '../pages/SeekerRegister'
 import SeekerDashboard from '../pages/SeekerDashPages/SeekerDashboard'
 import ViewJobDetails from '../pages/SeekerDashPages/ViewJobDetails'
 import ApplicationPage from '../pages/SeekerDashPages/ApplicationPage'
+import Chat from '../pages/SeekerDashPages/chat'
 
 export default function UserRoutes() {
 
@@ -36,6 +37,7 @@ export default function UserRoutes() {
           <Route path='/docs' element={<LandingPage/>}/>
           <Route path='/compsignin' element={<CompanySignIn/>}/>
           <Route path='/compsignup' element={<CompanyRegister/>}/>
+          <Route path='/chat' element={<Chat/>}/>
 
 
           {/* Protected Routes */}

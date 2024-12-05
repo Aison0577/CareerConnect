@@ -104,6 +104,11 @@ Route::post('/starjob',[
 ]);
 
 
+Route::get('/starjob/{s_id}',[
+    StarredJobController::class,'get'
+]);
+
+
 
 
 

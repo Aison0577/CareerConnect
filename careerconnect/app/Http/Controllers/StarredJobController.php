@@ -29,4 +29,18 @@ class StarredJobController extends Controller
         }
 }
 
+    public function get(Request $request,$s_id){
+        $bookmarks = StarredJob::where('seeker_id',$s_id)
+        ->with('seeker')
+        ->with('job')
+        ->get();
+
+        if(!$bookmarks){
+            return response()->json(['message'=>'No starred message'], 404);
+        }
+
+        return response()->json(['starred'=> $bookmarks], 200);
+
+    }
+
 }

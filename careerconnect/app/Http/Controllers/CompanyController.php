@@ -82,8 +82,8 @@ class CompanyController extends Controller
             if($company->logo){
                 Storage::delete($company->logo);
             }
-
             $company->logo = '';
+
         }elseif ($request->hasFile('logo')){
             $request->validate(['logo'=> 'image|mimes:jpeg,png,jpg,gif|max:2048']);
 
@@ -95,15 +95,6 @@ class CompanyController extends Controller
             $company->logo = $path;
 
         }
-
-        // if($request->hasFile('logo')){
-        //     if($company->logo){
-        //         Storage::delete($company->logo);
-        //     }
-
-        //     $path = $request->file('logo')->store('logos', 'public');
-        //     $company->logo = $path;
-        // }
 
         $company->name = $validated['name'];
         $company->email = $validated['email'];

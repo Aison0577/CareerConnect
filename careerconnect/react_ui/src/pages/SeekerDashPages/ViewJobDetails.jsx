@@ -21,8 +21,9 @@ export default function ViewJobDetails() {
     const getDetails = async()=>{
         await axiosClient.get(`/job/${id}`)
         .then(({data})=>{
-            console.log(data);
+            console.log(data.job.company.logo);
 
+            // console.log(`Company Image   ${details.company.logo}`);
             setdetails(data.job)
         })
         .catch(err=>{
@@ -35,6 +36,7 @@ export default function ViewJobDetails() {
 
     useEffect(()=>{
         let isMounted = true;
+
 
         if (isMounted) {
             getDetails();
@@ -56,21 +58,33 @@ export default function ViewJobDetails() {
                             <div className='flex items-center justify-center w-full gap-3'>
                                 <div>
                                     {
-                                        details.company.logo?
-                                        <Avatar
-                                            src={ExposeImage({ image: details.company.logo })}
-                                            sx={{ width: '50px', height: '50px' }}
-                                        />
-                                            :
-                                        <Avatar
-                                            {...stringAvatar(details.company.name || 'Unknown User')}
-                                            sx={{
-                                                ...stringAvatar( details.company.name || 'Unknown User').sx,
-                                                width: '50px', // Custom size
-                                                height: '50px', // Custom size
-                                            }}
+                                            console.log(ExposeImage({image:details.company.logo}))
 
-                                        />
+                                    }
+                                    {
+                                        details.company.logo?
+                                        <div>
+                                            <Avatar
+                                                src={ExposeImage({ image: details.company.logo })}
+                                                sx={{ width: '50px', height: '50px' }}
+                                            />
+                                                {console.log(ExposeImage({image:details.company.logo}))}
+
+                                        </div>
+                                            :
+                                            <div>
+                                                {console.log(ExposeImage({image:details.company.logo}))}
+                                                <Avatar
+                                                {...stringAvatar(details.company.name || 'Unknown User')}
+                                                sx={{
+                                                    ...stringAvatar( details.company.name || 'Unknown User').sx,
+                                                    width: '50px', // Custom size
+                                                    height: '50px', // Custom size
+                                                }}
+
+                                            />
+                                        </div>
+
                                     }
                                 </div>
                                 <Title text={details.company.name} otherStyles={'text-center text-gray-500'}/>

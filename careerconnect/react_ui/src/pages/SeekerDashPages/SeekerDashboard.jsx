@@ -5,6 +5,7 @@ import { faAddressBook, faBlog, faCompass, faGear, faGears, faNetworkWired, faPe
 import SeekerHeader from '../../components/SeekerHeader'
 import PostedJobs from './PostedJobs'
 import SeekerProfile from './SeekerProfile'
+import StarredJobs from './StarredJobs'
 
 export default function SeekerDashboard() {
 
@@ -17,7 +18,7 @@ export default function SeekerDashboard() {
     const pages = [
         <PostedJobs/>,
         2,
-        3,
+        <StarredJobs/>,
         <SeekerProfile/>,
     ]
 
