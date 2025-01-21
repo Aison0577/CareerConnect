@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Title from '../../typo/Title'
 import { CircularProgress, Tooltip } from '@mui/material'
-import JobsCard from '../../components/JobsCard'
+import JobsCard from '../../components/cards/JobsCard'
 import axiosClient from '../../../axios-client'
 import toast from 'react-hot-toast'
 import { useSeekerStateContext } from '../../contexts/SeekerContextProvider'
@@ -10,10 +10,8 @@ import { faPencil, faStar } from '@fortawesome/free-solid-svg-icons'
 
 export default function PostedJobs() {
 
-    const {user} = useSeekerStateContext()
-
     // console.log(user.jobtype);
-
+    const {user} = useSeekerStateContext()
 
     const [isAlljobs, setisAlljobs]=useState(false)
     const [jobs,setjobs] = useState([])
@@ -36,6 +34,8 @@ export default function PostedJobs() {
         .then(({data})=>{
             setjobs(data.jobs)
             setisAlljobs(true)
+            console.log(data);
+
         })
         .catch(err=>{
             console.log(err);
@@ -53,7 +53,6 @@ export default function PostedJobs() {
         await axiosClient.post('/foryoujobs',payload)
         .then(({data})=>{
             console.log(data);
-
             setjobs(data.jobs)
             setisAlljobs(false)
         })
@@ -63,27 +62,6 @@ export default function PostedJobs() {
         })
     }
 
-    const bookmarkjob = async(jobId)=>{
-        const payload = {
-            'job_id':jobId,
-            'seeker_id':user.id,
-        }
-        await axiosClient.post('/starjob',payload)
-        .then(({data})=>{
-            console.log(data);
-            toast.success(data.message)
-        })
-        .catch(err=>{
-            const response = err.response
-
-            if(response && response === 422){
-                console.log(response.data.message);
-                toast.error(response.data.message)
-            }
-
-            toast.error(response.data.message)
-        })
-    }
 
 
 
@@ -94,46 +72,34 @@ export default function PostedJobs() {
 
   return (
     <div className='w-full h-full overflow-y-auto'>
-        <div className=' adjust'>
-            <div className='sticky top-0 bg-white mb-10 z-10'>
+        <div className=''>
+            <div className='sticky top-0 bg-white mb-5 shadow-md z-10 p-4'>
                 <Title
                     text={'Posted Jobs'}
                     otherStyles={'text-primary'}
                 />
 
                 <div>
-                    <button onClick={getYourjobs} className={`px-6 py-3 hover:border-gray-500 border-b-[2px] ${!isAlljobs?'border-b-[4px] border-primary':''} `}>For you</button>
-                    <button onClick={getAlljobs} className={`px-6 py-3 hover:border-gray-500 border-b-[2px] ${isAlljobs?'border-b-[4px] border-primary':''}`}>All Jobs</button>
+                    {/* <a href="#me"> */}
+                        <button onClick={getYourjobs} className={`px-6 py-3 hover:border-gray-500 border-b-[2px] ${!isAlljobs?'border-b-[4px] border-primary':''} `}>For you</button>
+                    {/* </a> */}
+                    {/* <a href="#all"> */}
+                        <button onClick={getAlljobs} className={`px-6 py-3 hover:border-gray-500 border-b-[2px] ${isAlljobs?'border-b-[4px] border-primary':''}`}>All Jobs</button>
+                    {/* </a> */}
                 </div>
             </div>
 
 
 
                 {jobs?
-                    <div className='w-full adjust'>
-
+                    <div className='w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-3'>
                         {
                             jobs.map((job,index)=>(
-                                <div className='border-b-2 border-gray-400 mb-2'>
                                     <JobsCard
                                         job={job}
                                     key={index}/>
-                                    <div className='flex mb-3 items-center justify-end gap-2'>
-                                        <Tooltip title='Apply'>
-                                            <button>
-                                                <FontAwesomeIcon icon={faPencil} className='bg-gray-200 text-gray-400 size-4 p-2 rounded-xl'/>
-                                            </button>
-                                        </Tooltip>
-                                        <Tooltip title='Star'>
-                                            <button onClick={()=>bookmarkjob(job.id)}>
-                                                <FontAwesomeIcon icon={faStar} className='bg-gray-200 text-gray-400 size-4 p-2 rounded-xl'/>
-                                            </button>
-                                        </Tooltip>
-                                    </div>
-                                </div>
                             ))
                         }
-
                     </div>
 
 

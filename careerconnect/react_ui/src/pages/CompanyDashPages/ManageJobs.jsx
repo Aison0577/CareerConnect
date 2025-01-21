@@ -6,9 +6,8 @@ import axiosClient from '../../../axios-client'
 import toast from 'react-hot-toast'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
-import CompanyJobDetails from '../../components/CompanyJobDetails'
-import EditCompanyJob from '../../components/EditCompanyJob'
-import LoadingPage from '../LoadingPage'
+import CompanyJobDetails from './CompanyJobDetails'
+import EditCompanyJob from './EditCompanyJob'
 
 function ManageJobs() {
 
@@ -88,7 +87,7 @@ function ManageJobs() {
 
     if(!jobs){
         return (
-            <LoadingPage/>
+            <h1>Loading</h1>
         )
     }
 

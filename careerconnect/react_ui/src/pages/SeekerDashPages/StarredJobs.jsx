@@ -3,11 +3,12 @@ import Title from '../../typo/Title'
 import axiosClient from '../../../axios-client'
 import { useSeekerStateContext } from '../../contexts/SeekerContextProvider'
 import toast from 'react-hot-toast'
-import JobsCard from '../../components/JobsCard'
+// import JobsCard from '../../components/JobsCard'
 import { Tooltip } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faStar, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Subs from '../../typo/Subs'
+import JobsCard from '../../components/cards/JobsCard'
 
 export default function StarredJobs() {
 
@@ -65,37 +66,21 @@ export default function StarredJobs() {
 
   return (
     <div className='w-full h-full overflow-y-auto'>
-        <div className=' adjust'>
-            <div className='sticky top-0 bg-white mb-10 z-10'>
+        <div className=''>
+            <div className='sticky top-0 bg-white mb-5 shadow-md z-10 p-4'>
                 <Title
                     text={'Starred Jobs'}
                     otherStyles={'text-primary'}
                 />
             </div>
 
-            <div>
+            <div  className='w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-3'>
                 {
                     bookmarks.map((job,index)=>(
-                        <div className='border-b-2 border-gray-400 mb-2'>
-                            <div>
-
-                                <div className='flex-1'>
-                                    <h1 className='text-xl md:text-xl font-bold font-poppins text-primary mb-[-8px]'>{job.job.jobtitle}</h1>
-                                </div>
-                            </div>
-                            <div className='flex mb-3 items-center justify-end gap-2'>
-                                <Tooltip title='Apply'>
-                                    <button>
-                                        <FontAwesomeIcon icon={faPencil} className='bg-gray-200 text-gray-400 size-4 p-2 rounded-xl'/>
-                                    </button>
-                                </Tooltip>
-                                <Tooltip title='Star'>
-                                    <button onClick={()=>bookmarkjob()}>
-                                        <FontAwesomeIcon icon={faTrash} className='bg-gray-200 text-gray-400 size-4 p-2 rounded-xl'/>
-                                    </button>
-                                </Tooltip>
-                            </div>
-                        </div>
+                        <JobsCard
+                            key={index}
+                            job={job.job}
+                        />
                     ))
                 }
             </div>

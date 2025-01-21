@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StarredJob;
 use App\Models\CompanyPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CompanyRequest;
 
 
@@ -62,11 +64,19 @@ class CompanyPostController extends Controller
     {
 
         $jobtype = $request->input('jobtype');
+        $user_id = Auth::id();
 
         // return $jobtype;
         $job_type = CompanyPost::where('jobcategory', $jobtype)
         ->with('Company')
-        ->get();
+        ->get()
+        ->map(function ($job) use ($user_id){
+            $job->isStarred = StarredJob::where('seeker_id', 6)
+                                          ->where('job_id', $job->id)
+                                          ->exists();
+
+            return $job;
+        });
 
         if ($job_type) {
             return response()->json([
@@ -82,10 +92,18 @@ class CompanyPostController extends Controller
 
     public function getJobs(Request $request)
     {
-
+        $user_id = Auth::id();
         $jobs = CompanyPost::with('Company')
-        // ->with('StarredJob')
-        ->get();
+        ->get()
+        ->map(function ($job) use ($user_id){
+            $job->isStarred = StarredJob::where('seeker_id', 1)
+                                          ->where('job_id', $job->id)
+                                          ->exists();
+
+            return $job;
+        });
+
+
 
         if ($jobs) {
             return response()->json([

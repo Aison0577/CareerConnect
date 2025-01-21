@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import SeekerHeader from '../../components/SeekerHeader'
+import SeekerHeader from '../../components/Navs/SeekerHeader'
 import Title from '../../typo/Title'
 import Subs from '../../typo/Subs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

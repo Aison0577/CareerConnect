@@ -29,10 +29,11 @@ class StarredJobController extends Controller
         }
 }
 
-    public function get(Request $request,$s_id){
+    public function get($s_id){
+
         $bookmarks = StarredJob::where('seeker_id',$s_id)
-        ->with('seeker')
-        ->with('job')
+        // ->with('seeker')
+        ->with('job.company')
         ->get();
 
         if(!$bookmarks){

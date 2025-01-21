@@ -42,6 +42,8 @@ class CompanyController extends Controller
     {
         $data = $request->validated();
 
+        
+
         $company = Company::create([
            'name'=> $data['name'],
            'email'=> $data['email'],

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->date('deadline');
             $table->text('requirements');
             $table->string('jobdurationtype');
+            $table->string('salary');
+            $table->string('jobtype');
             $table->integer('views')->default(0);
             $table->integer('status');
             $table->unsignedBigInteger('company_id');
