@@ -23,6 +23,8 @@ export default function JobsCard({job}) {
             route(`/job/${job.id}`)
     }
     const [isStarred,setisStarred] = useState(false)
+
+
     const bookmarkjob = async(jobId)=>{
             setisStarred((prev)=> !prev)
             const payload = {
@@ -44,6 +46,8 @@ export default function JobsCard({job}) {
             })
         }
 
+
+        
         useEffect(()=>{
             setisStarred(job.isStarred)
             console.log(job.isStarred);

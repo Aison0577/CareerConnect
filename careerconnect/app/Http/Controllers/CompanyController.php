@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class CompanyController extends Controller
 
 {
-
+    
     public function login(CompanyLogin $request){
 
         $credentials = $request->validated();
@@ -42,7 +42,7 @@ class CompanyController extends Controller
     {
         $data = $request->validated();
 
-        
+
 
         $company = Company::create([
            'name'=> $data['name'],
